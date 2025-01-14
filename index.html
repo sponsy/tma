@@ -1,1 +1,146 @@
-<h1>hello!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Onboarding - Telegram Mini App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        #app {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1, h2, p {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Screen 1: Introduction -->
+        <div id="screen1">
+            <h1>Ты готов встретить того, кто знает, как удивить?</h1>
+            <button onclick="startOnboarding()">Нажми, если не боишься</button>
+        </div>
+
+        <!-- Screen 2: Questions -->
+        <div id="screen2" class="hidden">
+            <h2 id="questionText"></h2>
+            <div id="answers"></div>
+        </div>
+
+        <!-- Screen 3: Animation -->
+        <div id="screen3" class="hidden">
+            <h2>Создаём твою идеальную напарницу...</h2>
+            <p>Подожди несколько секунд...</p>
+            <div style="font-size: 50px;">✨✨✨</div>
+        </div>
+
+        <!-- Screen 4: Final Reveal -->
+        <div id="screen4" class="hidden">
+            <h1>Поздравляем! Мы создали для тебя ту самую...</h1>
+            <h2 id="finalName"></h2>
+            <p id="finalDescription"></p>
+            <button onclick="startChat()">Начать общение</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                text: "Какой ты предпочитаешь характер у партнёрши?",
+                answers: ["Дерзкая", "Нежная", "Таинственная", "Игривая"]
+            },
+            {
+                text: "Какая она в твоих мечтах?",
+                answers: ["Фатальная красотка", "Лучший друг", "Искусительница", "Непредсказуемая"]
+            },
+            {
+                text: "Какую атмосферу ты хочешь создать?",
+                answers: ["Интимную", "Страстную", "Лёгкую", "Глубокую"]
+            },
+            {
+                text: "Что для тебя главное в общении?",
+                answers: ["Игра слов", "Чувственность", "Уверенность", "Взаимность"]
+            }
+        ];
+
+        let currentQuestion = 0;
+        const answersSelected = [];
+
+        function startOnboarding() {
+            document.getElementById('screen1').classList.add('hidden');
+            document.getElementById('screen2').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('questionText').innerText = question.text;
+            const answersDiv = document.getElementById('answers');
+            answersDiv.innerHTML = '';
+            question.answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.innerText = answer;
+                button.onclick = () => selectAnswer(index);
+                answersDiv.appendChild(button);
+            });
+        }
+
+        function selectAnswer(answerIndex) {
+            answersSelected.push(questions[currentQuestion].answers[answerIndex]);
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showAnimation();
+            }
+        }
+
+        function showAnimation() {
+            document.getElementById('screen2').classList.add('hidden');
+            document.getElementById('screen3').classList.remove('hidden');
+            setTimeout(showFinalReveal, 3000);
+        }
+
+        function showFinalReveal() {
+            document.getElementById('screen3').classList.add('hidden');
+            document.getElementById('screen4').classList.remove('hidden');
+            const name = "Алекс"; // Example name, can be generated dynamically.
+            const description = `${answersSelected[0]} и ${answersSelected[1]} - ${answersSelected[2]} с акцентом на ${answersSelected[3]}.`; // Combine answers.
+            document.getElementById('finalName').innerText = name;
+            document.getElementById('finalDescription').innerText = description;
+        }
+
+        function startChat() {
+            alert("Переход в чат..."); // Replace with actual Telegram bot link or integration.
+        }
+    </script>
+</body>
+</html>
