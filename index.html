@@ -140,6 +140,9 @@
         function startChat() {
             alert("Redirecting to chat..."); // Replace with actual Telegram bot link or integration.
         }
+        if (window.Telegram.WebApp) {
+            Telegram.WebApp.init();
+        }
     </script>
 </body>
 </html>
