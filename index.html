@@ -71,6 +71,13 @@
         </div>
     </div>
     <script>
+        // Initialize Telegram WebApp
+        if (window.Telegram && window.Telegram.WebApp) {
+            Telegram.WebApp.init();
+        } else {
+            alert("This app is designed to be opened in Telegram.");
+        }
+
         const questions = [
             {
                 text: "What kind of personality do you prefer for your partner?",
@@ -139,9 +146,6 @@
 
         function startChat() {
             alert("Redirecting to chat..."); // Replace with actual Telegram bot link or integration.
-        }
-        if (window.Telegram.WebApp) {
-            Telegram.WebApp.init();
         }
     </script>
 </body>
