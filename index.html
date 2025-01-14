@@ -6,8 +6,9 @@
     <title>AI Onboarding - Telegram Mini App</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
             margin: 0;
             padding: 0;
             text-align: center;
@@ -16,28 +17,52 @@
             max-width: 500px;
             margin: 50px auto;
             padding: 20px;
-            background: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: #1e1e1e;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
             border-radius: 10px;
         }
         h1, h2, p {
             margin: 20px 0;
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 12px 24px;
+            font-size: 18px;
             margin: 10px;
             border: none;
-            border-radius: 5px;
-            background-color: #007BFF;
+            border-radius: 8px;
+            background-color: #3a86ff;
             color: white;
             cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #265df2;
+            transform: scale(1.05);
         }
         .hidden {
             display: none;
+        }
+        .progress {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .step {
+            width: 25%;
+            height: 10px;
+            background-color: #444;
+            border-radius: 5px;
+            margin: 0 5px;
+            transition: background-color 0.3s;
+        }
+        .step.active {
+            background-color: #3a86ff;
+        }
+        .illustration {
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
         }
     </style>
 </head>
@@ -45,18 +70,26 @@
     <div id="app">
         <!-- Screen 1: Introduction -->
         <div id="screen1">
+            <img src="https://via.placeholder.com/300x200" alt="Welcome" class="illustration">
             <h1>Are you ready to meet someone who knows how to surprise you?</h1>
             <button onclick="startOnboarding()">Click if you dare</button>
         </div>
 
         <!-- Screen 2: Questions -->
         <div id="screen2" class="hidden">
+            <div class="progress">
+                <div class="step" id="step1"></div>
+                <div class="step" id="step2"></div>
+                <div class="step" id="step3"></div>
+                <div class="step" id="step4"></div>
+            </div>
             <h2 id="questionText"></h2>
             <div id="answers"></div>
         </div>
 
         <!-- Screen 3: Animation -->
         <div id="screen3" class="hidden">
+            <img src="https://via.placeholder.com/300x200" alt="Loading" class="illustration">
             <h2>Creating your perfect companion...</h2>
             <p>Please wait a few seconds...</p>
             <div style="font-size: 50px;">✨✨✨</div>
@@ -64,9 +97,11 @@
 
         <!-- Screen 4: Final Reveal -->
         <div id="screen4" class="hidden">
+            <img src="https://via.placeholder.com/300x200" alt="Lizzy" class="illustration">
             <h1>Congratulations! We created the one for you...</h1>
             <h2 id="finalName"></h2>
             <p id="finalDescription"></p>
+            <p>Start your journey with her: <a href="https://t.me/Dolores_abernathy2" target="_blank">Connect with Lizzy</a></p>
             <button onclick="startChat()">Start Chat</button>
         </div>
     </div>
@@ -81,19 +116,19 @@
         const questions = [
             {
                 text: "What kind of personality do you prefer for your partner?",
-                answers: ["Bold", "Gentle", "Mysterious", "Playful"]
+                answers: ["Bold", "Gentle", "Mysterious", "Playful", "Charming", "Clever"]
             },
             {
                 text: "What is she like in your dreams?",
-                answers: ["A femme fatale", "Your best friend", "A seductress", "Unpredictable"]
+                answers: ["A femme fatale", "Your best friend", "A seductress", "Unpredictable", "Confident", "Adventurous"]
             },
             {
                 text: "What kind of atmosphere do you want to create?",
-                answers: ["Intimate", "Passionate", "Light-hearted", "Deep"]
+                answers: ["Intimate", "Passionate", "Light-hearted", "Deep", "Romantic", "Exciting"]
             },
             {
                 text: "What is most important to you in communication?",
-                answers: ["Witty banter", "Emotional connection", "Confidence", "Being on the same wavelength"]
+                answers: ["Witty banter", "Emotional connection", "Confidence", "Being on the same wavelength", "Honesty", "Humor"]
             }
         ];
 
@@ -103,6 +138,7 @@
         function startOnboarding() {
             document.getElementById('screen1').classList.add('hidden');
             document.getElementById('screen2').classList.remove('hidden');
+            updateProgress();
             showQuestion();
         }
 
@@ -122,10 +158,18 @@
         function selectAnswer(answerIndex) {
             answersSelected.push(questions[currentQuestion].answers[answerIndex]);
             currentQuestion++;
+            updateProgress();
             if (currentQuestion < questions.length) {
                 showQuestion();
             } else {
                 showAnimation();
+            }
+        }
+
+        function updateProgress() {
+            for (let i = 0; i < 4; i++) {
+                const step = document.getElementById(`step${i + 1}`);
+                step.classList.toggle('active', i < currentQuestion);
             }
         }
 
@@ -138,7 +182,7 @@
         function showFinalReveal() {
             document.getElementById('screen3').classList.add('hidden');
             document.getElementById('screen4').classList.remove('hidden');
-            const name = "Alex"; // Example name, can be generated dynamically.
+            const name = "Lizzy"; // Fixed name.
             const description = `${answersSelected[0]} and ${answersSelected[1]} - ${answersSelected[2]} with a focus on ${answersSelected[3]}.`; // Combine answers.
             document.getElementById('finalName').innerText = name;
             document.getElementById('finalDescription').innerText = description;
