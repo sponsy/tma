@@ -72,13 +72,18 @@
             height: auto;
             margin: 20px auto;
         }
+        .video {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body>
     <div id="app">
         <!-- Screen 1: Introduction -->
         <div id="screen1">
-            <img src="./assets/welcome.png" alt="Welcome" class="illustration">
+            <img src="./assets/welcome.gif" alt="Welcome" class="illustration">
             <h1>Are you ready to meet someone who knows how to surprise you?</h1>
             <button onclick="startOnboarding()">Click if you dare</button>
         </div>
@@ -105,7 +110,7 @@
 
         <!-- Screen 4: Final Reveal -->
         <div id="screen4" class="hidden">
-            <img src="./assets/lizzy.png" alt="Lizzy" class="illustration">
+            <video src="./assets/lizzy.mp4" autoplay muted loop class="video"></video>
             <h1>Congratulations! We created the one for you...</h1>
             <h2>Please, meet charming Lizzy ♥️</h2>
             <p id="finalDescription"></p>
@@ -198,4 +203,5 @@
     </script>
 </body>
 </html>
+
 
