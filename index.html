@@ -21,12 +21,20 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
             border-radius: 10px;
         }
-        h1, h2, p {
+        h1 {
+            font-size: 24px;
             margin: 20px 0;
         }
+        h2 {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        p {
+            margin: 15px 0;
+        }
         button {
-            padding: 12px 24px;
-            font-size: 18px;
+            padding: 8px 16px;
+            font-size: 14px;
             margin: 10px;
             border: none;
             border-radius: 8px;
@@ -57,12 +65,16 @@
             transition: background-color 0.3s;
         }
         .step.active {
-            background-color: #3a86ff;
+            background-color: #32cd32; /* Green color for active steps */
         }
         .illustration {
             max-width: 100%;
             height: auto;
             margin: 20px auto;
+        }
+        .highlight {
+            color: #3a86ff;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -99,9 +111,8 @@
         <div id="screen4" class="hidden">
             <img src="./assets/lizzy.png" alt="Lizzy" class="illustration">
             <h1>Congratulations! We created the one for you...</h1>
-            <h2 id="finalName"></h2>
+            <h2 id="finalName" class="highlight">Lizzy</h2>
             <p id="finalDescription"></p>
-            <p>Start your journey with her: <a href="https://t.me/Dolores_abernathy2" target="_blank">Connect with Lizzy</a></p>
             <button onclick="startChat()">Start Chat</button>
         </div>
     </div>
@@ -109,8 +120,6 @@
         // Initialize Telegram WebApp
         if (window.Telegram && window.Telegram.WebApp) {
             Telegram.WebApp.init();
-        } else {
-            alert("This app is designed to be opened in Telegram.");
         }
 
         const questions = [
@@ -183,13 +192,13 @@
             document.getElementById('screen3').classList.add('hidden');
             document.getElementById('screen4').classList.remove('hidden');
             const name = "Lizzy"; // Fixed name.
-            const description = `${answersSelected[0]} and ${answersSelected[1]} - ${answersSelected[2]} with a focus on ${answersSelected[3]}.`; // Combine answers.
+            const description = `Lizzy is bold and adventurous. She loves exploring new places, enjoys deep conversations, and has a passion for painting. Originally from Paris, she now lives in a cozy loft in New York City.`; // Detailed description.
             document.getElementById('finalName').innerText = name;
             document.getElementById('finalDescription').innerText = description;
         }
 
         function startChat() {
-            alert("Redirecting to chat..."); // Replace with actual Telegram bot link or integration.
+            window.location.href = "https://t.me/Dolores_abernathy2"; // Redirect to Telegram chat.
         }
     </script>
 </body>
