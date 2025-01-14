@@ -22,11 +22,11 @@
             border-radius: 10px;
         }
         h1 {
-            font-size: 24px;
+            font-size: 22px;
             margin: 20px 0;
         }
         h2 {
-            font-size: 20px;
+            font-size: 18px;
             margin: 20px 0;
         }
         p {
@@ -72,17 +72,13 @@
             height: auto;
             margin: 20px auto;
         }
-        .highlight {
-            color: #3a86ff;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
     <div id="app">
         <!-- Screen 1: Introduction -->
         <div id="screen1">
-            <img src="https://via.placeholder.com/300x200" alt="Welcome" class="illustration">
+            <img src="./assets/welcome.gif" alt="Welcome" class="illustration">
             <h1>Are you ready to meet someone who knows how to surprise you?</h1>
             <button onclick="startOnboarding()">Click if you dare</button>
         </div>
@@ -101,7 +97,7 @@
 
         <!-- Screen 3: Animation -->
         <div id="screen3" class="hidden">
-            <img src="https://via.placeholder.com/300x200" alt="Loading" class="illustration">
+            <img src="./assets/loading.gif" alt="Loading" class="illustration">
             <h2>Creating your perfect companion...</h2>
             <p>Please wait a few seconds...</p>
             <div style="font-size: 50px;">✨✨✨</div>
@@ -111,7 +107,7 @@
         <div id="screen4" class="hidden">
             <img src="./assets/lizzy.png" alt="Lizzy" class="illustration">
             <h1>Congratulations! We created the one for you...</h1>
-            <h2 id="finalName" class="highlight">Lizzy</h2>
+            <h2>Please, meet charming Lizzy ♥️</h2>
             <p id="finalDescription"></p>
             <button onclick="startChat()">Start Chat</button>
         </div>
@@ -125,19 +121,19 @@
         const questions = [
             {
                 text: "What kind of personality do you prefer for your partner?",
-                answers: ["Bold", "Gentle", "Mysterious", "Playful", "Charming", "Clever"]
+                answers: ["Bold", "Gentle", "Mysterious", "Playful", "Charming", "Clever", "Compassionate", "Independent"]
             },
             {
                 text: "What is she like in your dreams?",
-                answers: ["A femme fatale", "Your best friend", "A seductress", "Unpredictable", "Confident", "Adventurous"]
+                answers: ["A femme fatale", "Your best friend", "A seductress", "Unpredictable", "Confident", "Adventurous", "Kind", "Loyal"]
             },
             {
                 text: "What kind of atmosphere do you want to create?",
-                answers: ["Intimate", "Passionate", "Light-hearted", "Deep", "Romantic", "Exciting"]
+                answers: ["Intimate", "Passionate", "Light-hearted", "Deep", "Romantic", "Exciting", "Comfortable", "Adventurous"]
             },
             {
                 text: "What is most important to you in communication?",
-                answers: ["Witty banter", "Emotional connection", "Confidence", "Being on the same wavelength", "Honesty", "Humor"]
+                answers: ["Witty banter", "Emotional connection", "Confidence", "Being on the same wavelength", "Honesty", "Humor", "Empathy", "Intelligence"]
             }
         ];
 
@@ -193,7 +189,6 @@
             document.getElementById('screen4').classList.remove('hidden');
             const name = "Lizzy"; // Fixed name.
             const description = `Lizzy is bold and adventurous. She loves exploring new places, enjoys deep conversations, and has a passion for painting. Originally from Paris, she now lives in a cozy loft in New York City.`; // Detailed description.
-            document.getElementById('finalName').innerText = name;
             document.getElementById('finalDescription').innerText = description;
         }
 
