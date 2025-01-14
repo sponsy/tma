@@ -45,8 +45,8 @@
     <div id="app">
         <!-- Screen 1: Introduction -->
         <div id="screen1">
-            <h1>Ты готов встретить того, кто знает, как удивить?</h1>
-            <button onclick="startOnboarding()">Нажми, если не боишься</button>
+            <h1>Are you ready to meet someone who knows how to surprise you?</h1>
+            <button onclick="startOnboarding()">Click if you dare</button>
         </div>
 
         <!-- Screen 2: Questions -->
@@ -57,36 +57,36 @@
 
         <!-- Screen 3: Animation -->
         <div id="screen3" class="hidden">
-            <h2>Создаём твою идеальную напарницу...</h2>
-            <p>Подожди несколько секунд...</p>
+            <h2>Creating your perfect companion...</h2>
+            <p>Please wait a few seconds...</p>
             <div style="font-size: 50px;">✨✨✨</div>
         </div>
 
         <!-- Screen 4: Final Reveal -->
         <div id="screen4" class="hidden">
-            <h1>Поздравляем! Мы создали для тебя ту самую...</h1>
+            <h1>Congratulations! We created the one for you...</h1>
             <h2 id="finalName"></h2>
             <p id="finalDescription"></p>
-            <button onclick="startChat()">Начать общение</button>
+            <button onclick="startChat()">Start Chat</button>
         </div>
     </div>
     <script>
         const questions = [
             {
-                text: "Какой ты предпочитаешь характер у партнёрши?",
-                answers: ["Дерзкая", "Нежная", "Таинственная", "Игривая"]
+                text: "What kind of personality do you prefer for your partner?",
+                answers: ["Bold", "Gentle", "Mysterious", "Playful"]
             },
             {
-                text: "Какая она в твоих мечтах?",
-                answers: ["Фатальная красотка", "Лучший друг", "Искусительница", "Непредсказуемая"]
+                text: "What is she like in your dreams?",
+                answers: ["A femme fatale", "Your best friend", "A seductress", "Unpredictable"]
             },
             {
-                text: "Какую атмосферу ты хочешь создать?",
-                answers: ["Интимную", "Страстную", "Лёгкую", "Глубокую"]
+                text: "What kind of atmosphere do you want to create?",
+                answers: ["Intimate", "Passionate", "Light-hearted", "Deep"]
             },
             {
-                text: "Что для тебя главное в общении?",
-                answers: ["Игра слов", "Чувственность", "Уверенность", "Взаимность"]
+                text: "What is most important to you in communication?",
+                answers: ["Witty banter", "Emotional connection", "Confidence", "Being on the same wavelength"]
             }
         ];
 
@@ -131,14 +131,14 @@
         function showFinalReveal() {
             document.getElementById('screen3').classList.add('hidden');
             document.getElementById('screen4').classList.remove('hidden');
-            const name = "Алекс"; // Example name, can be generated dynamically.
-            const description = `${answersSelected[0]} и ${answersSelected[1]} - ${answersSelected[2]} с акцентом на ${answersSelected[3]}.`; // Combine answers.
+            const name = "Alex"; // Example name, can be generated dynamically.
+            const description = `${answersSelected[0]} and ${answersSelected[1]} - ${answersSelected[2]} with a focus on ${answersSelected[3]}.`; // Combine answers.
             document.getElementById('finalName').innerText = name;
             document.getElementById('finalDescription').innerText = description;
         }
 
         function startChat() {
-            alert("Переход в чат..."); // Replace with actual Telegram bot link or integration.
+            alert("Redirecting to chat..."); // Replace with actual Telegram bot link or integration.
         }
     </script>
 </body>
